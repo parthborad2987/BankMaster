@@ -1,0 +1,27 @@
+[
+  {
+    "Bank Name": "Bank Of Baroda",
+    "A/c Holder Name": "parth",
+    "Account Number":"1234 5678 9100 1112",
+    "IFSC Code": "12345678",
+    "MICR Code": "12365897",
+    "Customer Id": "parthborad298@gmail.com"
+  },
+  {
+    "Bank Name": "Bank Of America",
+    "A/c Holder Name": "parth",
+    "Account Number":"1234 5678 9100 1112",
+    "IFSC Code": "12345678",
+    "MICR Code": "12365897",
+    "Customer Id": "parthborad298@gmail.com"
+  },
+  {
+    "Bank Name": "kotak bank",
+    "A/c Holder Name": "parth",
+    "Account Number":"1234 5678 9100 1112",
+    "IFSC Code": "12345678",
+    "MICR Code": "12365897",
+    "Customer Id": "parthborad298@gmail.com"
+  }
+
+]
