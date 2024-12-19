@@ -45,7 +45,9 @@ class _ChangePinState extends State<ChangePin> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text('Change pin'),
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Colors.indigo,
+        title: const Text('Change pin',style: TextStyle(color: Colors.white),),
       ),
       body: SafeArea(
         child: FutureBuilder(
@@ -73,7 +75,7 @@ class _ChangePinState extends State<ChangePin> {
                             },
                             controller: _pinone,
                             decoration: const InputDecoration(hintText: "0"),
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.titleLarge ,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             validator: (value) {
@@ -99,7 +101,7 @@ class _ChangePinState extends State<ChangePin> {
                             },
                             controller: _pinTwo,
                             decoration: const InputDecoration(hintText: "0"),
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.titleLarge,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             validator: (value) {
@@ -125,7 +127,7 @@ class _ChangePinState extends State<ChangePin> {
                             },
                             controller: _pinThree,
                             decoration: const InputDecoration(hintText: "0"),
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.titleLarge,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             validator: (value) {
@@ -151,7 +153,7 @@ class _ChangePinState extends State<ChangePin> {
                             },
                             controller: _pinFour,
                             decoration: const InputDecoration(hintText: "0"),
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.titleLarge,
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             validator: (value) {
@@ -169,7 +171,10 @@ class _ChangePinState extends State<ChangePin> {
                       ],
                     ),),
                   ElevatedButton(
-                    child:  Text(_button),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.indigo, // Set the button color to indigo
+                    ),
+                    child:  Text(_button,style: TextStyle(color: Colors.white),),
                     onPressed: () {
                       if(_formKey.currentState!.validate()) {
                         Navigator.pop(context);

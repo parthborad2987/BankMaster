@@ -45,15 +45,17 @@ class _CardScreenState extends State<CardScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: Text("Card"),
+        title: Text("Card",style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(
             onPressed:() => showSearch(context: context, delegate: Searchdata()),
-            icon:  Icon(Icons.search),
+            icon:  Icon(Icons.search,color: Colors.white,),
           ),
           Container(
             width: 80,
             child: PopupMenuButton(
+              iconColor: Colors.white,
+              color: Colors.white,
               onSelected: (value) {
                   if(value == 0) {
                     setState(() {
@@ -247,6 +249,8 @@ class _CardScreenState extends State<CardScreen> {
                                   }),
                               Text(
                                 "${data1.CardHolderName}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   fontFamily: "Roboto",
                                   fontSize: 18,
@@ -741,7 +745,7 @@ class _CardScreenState extends State<CardScreen> {
           builder: (context,constrains) {
             if(constrains.maxWidth < 768) {
               return  Container(
-                padding:  const EdgeInsets.all(32),
+                padding:  const EdgeInsets.symmetric(vertical: 32,horizontal: 20),
                 decoration:  BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(20),
                   ),
@@ -754,6 +758,7 @@ class _CardScreenState extends State<CardScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Column(
                               children: [
@@ -813,14 +818,18 @@ class _CardScreenState extends State<CardScreen> {
                                     });
                                   }print(Fav1);
                                 }),
+                            SizedBox(height: 20,),
+                            Flexible(child:
                             Text(
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               "${data1.CardHolderName}",
                               style: const TextStyle(
                                 fontFamily: "Roboto",
                                 fontSize: 15,
                                 color: Colors.white,
                               ),
-                            ),
+                            ),),
                             SizedBox(height: 20,),
                             Text(
                               "${data1.Exdate}",
@@ -890,7 +899,8 @@ class _CardScreenState extends State<CardScreen> {
                 ),
                 child: ListTile(title: Stack(
                   children: [
-                    Column(children: [
+                    Column(
+                      children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -954,14 +964,17 @@ class _CardScreenState extends State<CardScreen> {
                                   });
                                 }print(Fav1);
                               }),
-                          Text(
+                          Flexible(
+                            child: Text(
+                              maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             "${data1.CardHolderName}",
                             style: const TextStyle(
                               fontFamily: "Roboto",
                               fontSize: 30,
                               color: Colors.white,
                             ),
-                          ),
+                          ),),
                           Text(
                             "${data1.Exdate}",
                             style: const TextStyle(
@@ -1610,14 +1623,16 @@ Widget _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,Str
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          Flexible(child: Text(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             "${data1.CardHolderName}",
                             style: const TextStyle(
                               fontFamily: "Roboto",
                               fontSize: 18,
                               color: Colors.white,
                             ),
-                          ),
+                          ),),
                           SizedBox(width: 10),
                           Text(
                             "${data1.Exdate}",
@@ -1627,12 +1642,52 @@ Widget _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,Str
                               color: Colors.white,
                             ),
                           ),
+                          SizedBox(width: 10),
+                          PopupMenuButton<int>(
+                            onSelected: (item) => onSelected(context,item,data1),
+                            itemBuilder: (context) => [
+                              PopupMenuItem<int>(
+                                value: 0,
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.edit,),
+                                    Padding(padding: EdgeInsets.only(left: 12.0),
+                                      child: Text('update'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem<int>(
+                                value: 1,
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.share,color: Colors.black,),
+                                    Padding(padding: EdgeInsets.only(left: 12.0),
+                                      child: Text('Share'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              PopupMenuItem<int>(
+                                value: 2,
+                                child: Row(
+                                  children: const [
+                                    Icon(Icons.delete_forever),
+                                    Padding(padding: EdgeInsets.only(left: 12.0),
+                                      child: Text('Delete'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                            child: const Icon(Icons.more_vert_sharp, color: Colors.white,size: 25,),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10,)
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  /*SizedBox(height: 10,),
                   Positioned(height: 335,
                     left: 300,
                     child: PopupMenuButton<int>(
@@ -1673,7 +1728,7 @@ Widget _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,Str
                         ),
                       ],
                       child: const Icon(Icons.more_vert_sharp, color: Colors.white,size: 25,),
-                    ),),
+                    ),),*/
                 ],
               ),
             );
@@ -1731,16 +1786,20 @@ Widget _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,Str
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        Flexible(child: Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           "${data1.CardHolderName}",
                           style: const TextStyle(
                             fontFamily: "Roboto",
                             fontSize: 40,
                             color: Colors.white,
                           ),
-                        ),
+                        ),),
                         SizedBox(width: 20),
                         Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           "${data1.Exdate}",
                           style: const TextStyle(
                             fontFamily: "Roboto",
@@ -1748,11 +1807,51 @@ Widget _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,Str
                             color: Colors.white,
                           ),
                         ),
+                        SizedBox(width: 20),
+                        PopupMenuButton<int>(
+                          onSelected: (item) => onSelected(context,item,data1),
+                          itemBuilder: (context) => [
+                            PopupMenuItem<int>(
+                              value: 0,
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.edit,),
+                                  Padding(padding: EdgeInsets.only(left: 12.0),
+                                    child: Text('update'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            PopupMenuItem<int>(
+                              value: 1,
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.share,color: Colors.black,),
+                                  Padding(padding: EdgeInsets.only(left: 12.0),
+                                    child: Text('Share'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            PopupMenuItem<int>(
+                              value: 2,
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.delete_forever),
+                                  Padding(padding: EdgeInsets.only(left: 12.0),
+                                    child: Text('Delete'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                          child: const Icon(Icons.more_vert_sharp, color: Colors.white,size: 45,),
+                        ),
                       ],
                     ),
                   ],
                   ),
-                  Positioned(height: 666,
+                  /*Positioned(height: 666,
                     left: 595,
                     child: PopupMenuButton<int>(
                       onSelected: (item) => onSelected(context,item,data1),
@@ -1792,7 +1891,7 @@ Widget _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,Str
                         ),
                       ],
                       child: const Icon(Icons.more_vert_sharp, color: Colors.white,size: 45,),
-                    ),),
+                    ),),*/
                 ],
               ),
             );

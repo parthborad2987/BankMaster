@@ -77,13 +77,15 @@ class _BankDetailState extends State<BankDetail> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Theme.of(context).primaryColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const MyHomePage()));
           },
           icon: const Icon(Icons.arrow_back),
         ),
-        title: const Text('BANK DETAILS'),
+        title: const Text('BANK DETAILS',style: TextStyle(color: Colors.white),),
       ),
       body: SafeArea(
         child: FutureBuilder(

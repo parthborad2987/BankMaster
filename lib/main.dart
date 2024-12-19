@@ -50,7 +50,7 @@ class MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-       primarySwatch: Colors.indigo
+       primaryColor: Colors.indigo
       ),
       home: SafeArea(
         child: FutureBuilder(

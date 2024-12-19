@@ -34,17 +34,29 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+     return DefaultTabController(
+         length: 2, // number of tabs
+         child:Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: const Text('Home'),
+        title: const Text('Home',style: TextStyle(color: Colors.white),),
+        bottom: TabBar(
+          labelColor: Colors.white,
+          dividerColor: Colors.white,
+          indicatorColor: Colors.white,
+          unselectedLabelColor: Colors.white38,
+          tabs: [
+            Tab(text: 'Bank View'),
+            Tab(text: 'Card View'),
+          ],
+        ),
       ),
-       body:  Stack(
+       body: TabBarView(
          children: [
-
            _BankView(),
            _CardView(),
-       ],)
+         ],
+       ),),
     );
   }
 
@@ -56,7 +68,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           builder: (context, constraints) {
             if (constraints.maxWidth < 768) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 45,horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 5),
                 child: Stack(
                   children: [
                     Image.asset('assets/passbook.png'),
@@ -65,7 +77,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       children: [
                         ListTile(
                           title: Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(2),
                             child: Column(
                               children: [
                                 Row(
@@ -154,7 +166,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                         color: Colors.black, size: 25,),
                                     ),
                                   ],),
-                                SizedBox(height: 470,)
                               ],
                             ),
                           ),
@@ -199,7 +210,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 55,),
+                              const SizedBox(height: 15,),
                               Padding(padding: const EdgeInsets.only(top: 5),
                                   child: Text("${data.AcHolderName}",
                                     textAlign: TextAlign.center,
@@ -373,14 +384,16 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
                          Row(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
-                             Text(
+                             Flexible(child: Text(
+                               maxLines: 1,
+                               overflow: TextOverflow.ellipsis,
                                "${data1.CardHolderName}",
                                style: const TextStyle(
                                  fontFamily: "Roboto",
                                  fontSize: 18,
                                  color: Colors.white,
                                ),
-                             ),
+                             ),),
                              SizedBox(width: 10),
                              Text(
                                "${data1.Exdate}",
@@ -825,7 +838,7 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
          builder: (context,constrains) {
            if(constrains.maxWidth < 768) {
              return Container(
-               padding:  const EdgeInsets.all(32),
+               padding:  const EdgeInsets.symmetric(vertical: 32,horizontal: 20),
                decoration:  BoxDecoration(
                  borderRadius: const BorderRadius.all(Radius.circular(20),
                  ),
@@ -875,34 +888,42 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
                          ],
                        ),
                        Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         crossAxisAlignment: CrossAxisAlignment.end,
+                         crossAxisAlignment: CrossAxisAlignment.center,
                          children: [
-                           Text(
-                             "${data1.CardHolderName}",
-                             style: const TextStyle(
-                               fontFamily: "Roboto",
-                               fontSize: 18,
-                               color: Colors.white,
+                           // Wrap Text in Expanded
+                           Flexible(
+                             child: Text(
+                               "${data1.CardHolderName}",
+                               style: const TextStyle(
+                                 fontFamily: "Roboto",
+                                 fontSize: 18,
+                                 color: Colors.white,
+                               ),
+                               overflow: TextOverflow.ellipsis, // Prevent overflow
+                               // maxLines: 1, // Limit text to one line
                              ),
                            ),
-                           Text(
-                             "${data1.Exdate}",
-                             style: const TextStyle(
-                               fontFamily: "Roboto",
-                               fontSize: 18,
-                               color: Colors.white,
+                           // Wrap Text in Expanded
+                            Text(
+                               "${data1.Exdate}",
+                               style: const TextStyle(
+                                 fontFamily: "Roboto",
+                                 fontSize: 18,
+                                 color: Colors.white,
+                               ),
+                               overflow: TextOverflow.ellipsis, // Prevent overflow
+                               // maxLines: 1, // Limit text to one line
                              ),
-                           ),
                            PopupMenuButton<int>(
-                             onSelected: (item) => onSelected1(context,item,data1),
+                             onSelected: (item) => onSelected1(context, item, data1),
                              itemBuilder: (context) => [
                                PopupMenuItem<int>(
                                  value: 0,
                                  child: Row(
                                    children: const [
-                                     Icon(Icons.edit,),
-                                     Padding(padding: EdgeInsets.only(left: 12.0),
+                                     Icon(Icons.edit),
+                                     Padding(
+                                       padding: EdgeInsets.only(left: 12.0),
                                        child: Text('update'),
                                      ),
                                    ],
@@ -912,8 +933,9 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
                                  value: 1,
                                  child: Row(
                                    children: const [
-                                     Icon(Icons.share,color: Colors.black,),
-                                     Padding(padding: EdgeInsets.only(left: 12.0),
+                                     Icon(Icons.share, color: Colors.black),
+                                     Padding(
+                                       padding: EdgeInsets.only(left: 12.0),
                                        child: Text('Share'),
                                      ),
                                    ],
@@ -924,15 +946,20 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
                                  child: Row(
                                    children: const [
                                      Icon(Icons.delete_forever),
-                                     Padding(padding: EdgeInsets.only(left: 12.0),
+                                     Padding(
+                                       padding: EdgeInsets.only(left: 12.0),
                                        child: Text('Delete'),
                                      ),
                                    ],
                                  ),
                                ),
                              ],
-                             child: const Icon(Icons.more_vert_sharp, color: Colors.white,size: 25,),
-                           )
+                             child: const Icon(
+                               Icons.more_vert_sharp,
+                               color: Colors.white,
+                               size: 25,
+                             ),
+                           ),
                          ],
                        ),
                        SizedBox(height: 10,)
@@ -1098,15 +1125,15 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
       break;
     }
   }
+
  _BankView() {
    return  SafeArea(
-     minimum: EdgeInsets.symmetric(horizontal: 10),
+     minimum: EdgeInsets.symmetric(horizontal: 10,vertical: 0),
      child: FutureBuilder(
        future: SqfliteDatabase().fetchData(),
        builder: (BuildContext context,AsyncSnapshot<List<SqfliteDbModel>> snapshot) {
          if(snapshot.hasData) {
-           return PageView.builder(
-             scrollDirection: Axis.horizontal,
+           return ListView.builder(
              itemCount: snapshot.data!.length,
              itemBuilder: (ctx,index) {
                return Column(
@@ -1128,13 +1155,13 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
 
   _CardView() {
    return SafeArea(
-      minimum: EdgeInsets.symmetric(vertical: 220,horizontal: 5),
+      minimum: EdgeInsets.symmetric(vertical: 0,horizontal: 5),
       child: FutureBuilder(
         future: SqfliteDatabase().fetchdata1(),
         builder: (BuildContext context,AsyncSnapshot<List<SqfliteDbModel1>> snapshot) {
           if(snapshot.hasData) {
-            return PageView.builder(
-                scrollDirection: Axis.horizontal,
+            return ListView.builder(
+                scrollDirection: Axis.vertical,
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context,index) {
                   String icons = '';
@@ -1170,6 +1197,4 @@ _GenerateCard(SqfliteDbModel1 data1,String icon,String image1,context,String Cty
       ),
     );
   }
-
-
 }

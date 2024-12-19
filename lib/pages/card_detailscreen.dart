@@ -85,7 +85,9 @@ class _CardDetailsState extends State<CardDetails> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('CARD DETAILS'),
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text('CARD DETAILS',style: TextStyle(color: Colors.white),),
         leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MyHomePage()));

@@ -69,7 +69,11 @@ class _AddBankDetailsState extends State<AddBankDetails> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("ADD BANK DETAILS"),
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: const Text("ADD BANK DETAILS",style: TextStyle(color: Colors.white),),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -94,7 +98,10 @@ class _AddBankDetailsState extends State<AddBankDetails> {
                       children: [
                         ElevatedButton(
                           // heroTag: 'heroTag2',
-                          child: const Icon(Icons.arrow_back,),onPressed: () {
+                          style: ElevatedButton.styleFrom(backgroundColor: Theme
+                              .of(context)
+                              .primaryColor),
+                          child: const Icon(Icons.arrow_back,color: Colors.white,),onPressed: () {
                           _controller.previousPage(
                               duration: const Duration(milliseconds: 1),
                               curve: Curves.easeInExpo);
@@ -104,12 +111,17 @@ class _AddBankDetailsState extends State<AddBankDetails> {
                           controller: _controller,
                           count: 5,
                           effect: JumpingDotEffect(jumpScale: 3,
-                            activeDotColor: Colors.deepPurple,
+                            activeDotColor: Theme
+                                .of(context)
+                                .primaryColor,
                             dotColor: Colors.deepPurple.shade100,
                           ),
                         ),
                         ElevatedButton(
-                          child: const Icon(Icons.arrow_forward),
+                          style: ElevatedButton.styleFrom(backgroundColor: Theme
+                              .of(context)
+                              .primaryColor),
+                          child: const Icon(Icons.arrow_forward,color: Colors.white,),
                           onPressed: () {
                             if(_controller.page == 0){
                               if (_formKey.currentState!.validate())  {
@@ -579,6 +591,9 @@ class _AddBankDetailsState extends State<AddBankDetails> {
                   ),
                   const SizedBox(height: 30,),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Theme
+                        .of(context)
+                        .primaryColor),
                     onPressed:() {
                       _insertData(
                           _value,
@@ -605,6 +620,9 @@ class _AddBankDetailsState extends State<AddBankDetails> {
                         _HelpLineEmail.text,
                       );
                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyHomePage()),(route) => false);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Save data successfully")));
                     },
                     child:  const Text('Save',
                       style: TextStyle(

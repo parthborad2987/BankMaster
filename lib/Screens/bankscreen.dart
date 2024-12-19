@@ -60,14 +60,16 @@ class _BankScreenState extends State<BankScreen> with WidgetsBindingObserver {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.indigo,
-        title: Text("Bank"),
+        title: Text("Bank",style: TextStyle(color: Colors.white),),
         elevation: 5,
         actions: [
           IconButton(
               onPressed: () => showSearch(context: context, delegate: Search(BankName)),
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.search,color: Colors.white,),
           ),
             PopupMenuButton(
+              iconColor: Colors.white,
+              color: Colors.white,
               onSelected: (value) {
                 if(value == 0) {
                   setState(() {
@@ -252,7 +254,7 @@ class _BankScreenState extends State<BankScreen> with WidgetsBindingObserver {
                       children: [
                         ListTile(
                           title: Padding(
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 3),
                             child: Column(
                               children: [
                                 Row(
@@ -383,7 +385,7 @@ class _BankScreenState extends State<BankScreen> with WidgetsBindingObserver {
                           padding: const EdgeInsets.all(90),
                           child: Column(
                             children: [
-                              SizedBox(height: 30,),
+                              SizedBox(height: 5,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment
                                     .spaceBetween,
@@ -527,7 +529,7 @@ _ListItem(SqfliteDbModel data,context,String checkType,toggleSelection,isSelecte
                     children: [
                       ListTile(
                         title: Padding(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.all(3),
                           child: Column(
                             children: [
                               Row(
@@ -639,7 +641,7 @@ _ListItem(SqfliteDbModel data,context,String checkType,toggleSelection,isSelecte
                         padding: const EdgeInsets.all(90),
                         child: Column(
                           children: [
-                            SizedBox(height: 30,),
+                            SizedBox(height: 10,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment
                                   .spaceBetween,
@@ -680,10 +682,6 @@ _ListItem(SqfliteDbModel data,context,String checkType,toggleSelection,isSelecte
                                   style: const TextStyle(fontSize: 22,
                                       fontWeight: FontWeight.bold),),
                                 SizedBox(height: 50,),
-                                IconButton(
-                                  onPressed: toggleSelection,
-                                  icon: isSelected ? Icon(Icons.favorite,color: Colors.red) : Icon(Icons.favorite,color: Colors.white),
-                                ),
                                 PopupMenuButton<int>(
                                   onSelected: (item) =>
                                       onSelected(context, item, data),

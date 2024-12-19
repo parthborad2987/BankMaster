@@ -93,7 +93,11 @@ class _UpDateBankDetailState extends State<UpDateBankDetail> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('UPDATE BANK DETAILS'),
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: const Text('UPDATE BANK DETAILS',style: TextStyle(color: Colors.white),),
       ),
       body: SafeArea(
         child: FutureBuilder(
@@ -600,6 +604,9 @@ class _UpDateBankDetailState extends State<UpDateBankDetail> {
                     ),
                     const SizedBox(height: 30,),
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: Theme
+                          .of(context)
+                          .primaryColor),
                       onPressed: () {
                           _updateData(
                           _value,
@@ -626,6 +633,9 @@ class _UpDateBankDetailState extends State<UpDateBankDetail> {
                           _HelpLineEmail.text
                         );
                         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyHomePage()),(route) => false);
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Update data successfully")));
                       },
                       child: Text("${_button}",
                         style: const TextStyle(

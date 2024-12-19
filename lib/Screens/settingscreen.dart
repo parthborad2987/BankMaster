@@ -31,7 +31,8 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setting'),
+        backgroundColor: Colors.indigo,
+        title: const Text('Setting',style: TextStyle(color: Colors.white),),
       ),
       body: SafeArea(
         child: FutureBuilder(
@@ -76,7 +77,7 @@ Widget buildSetting(SqfliteDbModel3 data) {
                     );
                   },
                   title: const Text('None',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                  selected: true
+                  // selected: true
               ),
               RadioListTile(
                 value: '1',
@@ -92,7 +93,7 @@ Widget buildSetting(SqfliteDbModel3 data) {
                 },
                 title: const Text('Pin',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
               ),
-              RadioListTile(
+              /*RadioListTile(
                 value: '2',
                 groupValue: selectedValue,
                 onChanged: (value) {
@@ -104,7 +105,7 @@ Widget buildSetting(SqfliteDbModel3 data) {
                   );
                 },
                 title: const Text('FingerPrint',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-              ),
+              ),*/
             ],),
          ],
       ),
